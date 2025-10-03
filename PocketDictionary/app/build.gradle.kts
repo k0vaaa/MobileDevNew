@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "ru.mirea.kovalikaa.pocketdictionary"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ru.mirea.kovalikaa.pocketdictionary"
