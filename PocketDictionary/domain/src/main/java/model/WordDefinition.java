@@ -1,4 +1,4 @@
-package ru.mirea.kovalikaa.pocketdictionary.domain.model;
+package model;
 
 public class WordDefinition {
     private final String word;

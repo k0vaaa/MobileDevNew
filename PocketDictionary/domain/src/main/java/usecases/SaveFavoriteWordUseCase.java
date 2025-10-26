@@ -1,7 +1,8 @@
-package ru.mirea.kovalikaa.pocketdictionary.domain.usecases;
+package usecases;
 
-import ru.mirea.kovalikaa.pocketdictionary.domain.model.WordDefinition;
-import ru.mirea.kovalikaa.pocketdictionary.domain.repository.WordRepository;
+
+import model.WordDefinition;
+import repository.WordRepository;
 
 public class SaveFavoriteWordUseCase {
     private final WordRepository wordRepository;

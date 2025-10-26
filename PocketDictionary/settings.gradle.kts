@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "PocketDictionary"
 include(":app")
+include(":domain")
+include(":data")

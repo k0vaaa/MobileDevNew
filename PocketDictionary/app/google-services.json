@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "877088390359",
+    "project_id": "pocketdictionary-a66a1",
+    "storage_bucket": "pocketdictionary-a66a1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877088390359:android:e6f9566632687800398492",
+        "android_client_info": {
+          "package_name": "ru.mirea.kovalikaa.pocketdictionary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO8Za8HBfi-YRr7tNpLUuDXeNYyQGIJAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

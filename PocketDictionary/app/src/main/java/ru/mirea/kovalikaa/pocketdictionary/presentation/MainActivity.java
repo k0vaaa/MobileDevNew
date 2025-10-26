@@ -6,18 +6,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.room.Room;
 
+import model.WordDefinition;
+import repository.WordRepository;
 import ru.mirea.kovalikaa.pocketdictionary.R;
+import ru.mirea.kovalikaa.pocketdictionary.data.network.NetworkApi;
 import ru.mirea.kovalikaa.pocketdictionary.data.repository.WordRepositoryImpl;
-import ru.mirea.kovalikaa.pocketdictionary.domain.model.WordDefinition;
-import ru.mirea.kovalikaa.pocketdictionary.domain.repository.WordRepository;
-import ru.mirea.kovalikaa.pocketdictionary.domain.usecases.GetWordDefinitionUseCase;
-import ru.mirea.kovalikaa.pocketdictionary.domain.usecases.SaveFavoriteWordUseCase;
+import ru.mirea.kovalikaa.pocketdictionary.data.storage.SharedPrefWordStorage;
+import ru.mirea.kovalikaa.pocketdictionary.data.storage.WordStorage;
+import ru.mirea.kovalikaa.pocketdictionary.data.storage.room.AppDatabase;
+import ru.mirea.kovalikaa.pocketdictionary.data.storage.room.WordDao;
+import usecases.GetWordDefinitionUseCase;
+import usecases.SaveFavoriteWordUseCase;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,9 +36,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WordRepository wordRepository = new WordRepositoryImpl();
+
+        NetworkApi networkApi = new NetworkApi();
+
+        AppDatabase database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "dictionary-db")
+                .allowMainThreadQueries()
+                .build();
+        WordDao wordDao = database.wordDao();
+
+        WordStorage sharedPrefStorage = new SharedPrefWordStorage(this);
+
+        WordRepository wordRepository = new WordRepositoryImpl(sharedPrefStorage, wordDao, networkApi);
+
         getWordDefinitionUseCase = new GetWordDefinitionUseCase(wordRepository);
         saveFavoriteWordUseCase = new SaveFavoriteWordUseCase(wordRepository);
+
 
         editTextWord = findViewById(R.id.editTextWord);
         textViewResult = findViewById(R.id.textViewResult);
@@ -44,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
         buttonSearch.setOnClickListener(v -> {
             String word = editTextWord.getText().toString();
+            if (word.isEmpty()) {
+                Toast.makeText(this, "Please enter a word", Toast.LENGTH_SHORT).show();
+                return;
+            }
             currentWord = getWordDefinitionUseCase.execute(word);
             String resultText = "Word: " + currentWord.getWord() + "\n\nDefinition: " + currentWord.getDefinition();
             textViewResult.setText(resultText);

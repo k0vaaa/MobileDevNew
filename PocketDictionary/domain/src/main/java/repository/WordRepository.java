@@ -1,6 +1,7 @@
-package ru.mirea.kovalikaa.pocketdictionary.domain.repository;
+package repository;
 
-import ru.mirea.kovalikaa.pocketdictionary.domain.model.WordDefinition;
+
+import model.WordDefinition;
 
 public interface WordRepository {
     WordDefinition getDefinition(String word);
