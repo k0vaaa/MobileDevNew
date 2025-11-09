@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.mirea.kovalikaa.Lesson9"
+    namespace = "ru.mirea.kovalikaa.lesson9"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "ru.mirea.kovalikaa.Lesson9"
+        applicationId = "ru.mirea.kovalikaa.lesson9"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -42,4 +42,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(project(":domain"))
     implementation(project(":data"))
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata:2.7.0")
 }

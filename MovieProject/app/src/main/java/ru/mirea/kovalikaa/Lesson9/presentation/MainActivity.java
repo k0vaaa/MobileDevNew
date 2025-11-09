@@ -1,45 +1,44 @@
-package ru.mirea.kovalikaa.Lesson9.presentation;
-
-import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
+package ru.mirea.kovalikaa.lesson9.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import ru.mirea.kovalikaa.Lesson9.R;
-import ru.mirea.kovalikaa.lesson9.data.repository.MovieRepositoryImpl;
-import ru.mirea.kovalikaa.lesson9.data.storage.MovieStorage;
-import ru.mirea.kovalikaa.lesson9.data.storage.SharedPrefMovieStorage;
+import androidx.lifecycle.ViewModelProvider;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import ru.mirea.kovalikaa.lesson9.R;
 import ru.mirea.kovalikaa.lesson9.domain.models.Movie;
-import ru.mirea.kovalikaa.lesson9.domain.repository.MovieRepository;
-import ru.mirea.kovalikaa.lesson9.domain.usercases.GetFavoriteFilmUseCase;
-import ru.mirea.kovalikaa.lesson9.domain.usercases.SaveFilmToFavoriteUseCase;
-
 
 public class MainActivity extends AppCompatActivity {
+
     private TextView textView;
     private EditText editText;
+    private MainViewModel mainViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainViewModel = new ViewModelProvider(this, new ViewModelFactory(this))
+                .get(MainViewModel.class);
+
         textView = findViewById(R.id.textViewMovie);
         editText = findViewById(R.id.editTextMovie);
+        Button buttonGet = findViewById(R.id.buttonGetMovie);
+        Button buttonSave = findViewById(R.id.buttonSaveMovie);
 
-//        MovieRepository movieRepository = new MovieRepositoryImpl(this);
+        mainViewModel.getFavoriteMovie().observe(this, s -> {
+            textView.setText(s);
+        });
 
-        MovieStorage storage = new SharedPrefMovieStorage(this);
-        MovieRepository movieRepository = new MovieRepositoryImpl(storage);
-        GetFavoriteFilmUseCase getFavoriteFilmUseCase = new GetFavoriteFilmUseCase(movieRepository);
-        SaveFilmToFavoriteUseCase saveFilmToFavoriteUseCase = new SaveFilmToFavoriteUseCase(movieRepository);
-        findViewById(R.id.buttonSaveMovie).setOnClickListener(view -> {
+        buttonSave.setOnClickListener(view -> {
             String movieName = editText.getText().toString();
-            Boolean result = saveFilmToFavoriteUseCase.execute(new Movie(2, movieName));
-            textView.setText(String.format("Save result %s", result));
+            mainViewModel.setText(new Movie(2, movieName));
         });
-        findViewById(R.id.buttonGetMovie).setOnClickListener(view -> {
-            Movie movie = getFavoriteFilmUseCase.execute();
-            textView.setText(String.format("Result: %s", movie.getName()));
+
+        buttonGet.setOnClickListener(view -> {
+            mainViewModel.getText();
         });
-    }   
+    }
 }

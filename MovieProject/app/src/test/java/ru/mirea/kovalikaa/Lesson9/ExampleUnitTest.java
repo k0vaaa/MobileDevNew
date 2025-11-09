@@ -1,4 +1,4 @@
-package ru.mirea.kovalikaa.Lesson9;
+package ru.mirea.kovalikaa.lesson9;
 
 import org.junit.Test;
 
