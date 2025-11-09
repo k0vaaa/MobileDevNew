@@ -1,4 +1,4 @@
-package ru.mirea.kovalikaa.Lesson9.domain.models;
+package ru.mirea.kovalikaa.lesson9.domain.models;
 
 public class Movie {
     private int id;

@@ -7,6 +7,13 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MovieProject.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MovieProject.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MovieProject.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MovieProject.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/MovieProject.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/MovieProject.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/MovieProject.data.iml" filepath="$PROJECT_DIR$/.idea/modules/data/MovieProject.data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/MovieProject.data.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/data/MovieProject.data.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/MovieProject.data.main.iml" filepath="$PROJECT_DIR$/.idea/modules/data/MovieProject.data.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/data/MovieProject.data.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/data/MovieProject.data.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.test.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.test.iml" />
     </modules>
   </component>
 </project>

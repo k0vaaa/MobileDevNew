@@ -22,6 +22,8 @@
     <orderEntry type="jdk" jdkName="Android API 35, extension level 13 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="MovieProject.app.main" scope="TEST" />
+    <orderEntry type="module" module-name="MovieProject.domain.main" scope="TEST" />
+    <orderEntry type="module" module-name="MovieProject.data.main" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.appcompat:appcompat:1.7.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.activity:activity:1.10.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.core:core-ktx:1.13.0@aar" level="project" />

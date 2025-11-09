@@ -7,11 +7,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ru.mirea.kovalikaa.Lesson9.R;
-import ru.mirea.kovalikaa.Lesson9.data.repository.MovieRepositoryImpl;
-import ru.mirea.kovalikaa.Lesson9.domain.models.Movie;
-import ru.mirea.kovalikaa.Lesson9.domain.repository.MovieRepository;
-import ru.mirea.kovalikaa.Lesson9.domain.usercases.GetFavoriteFilmUseCase;
-import ru.mirea.kovalikaa.Lesson9.domain.usercases.SaveFilmToFavoriteUseCase;
+import ru.mirea.kovalikaa.lesson9.data.repository.MovieRepositoryImpl;
+import ru.mirea.kovalikaa.lesson9.data.storage.MovieStorage;
+import ru.mirea.kovalikaa.lesson9.data.storage.SharedPrefMovieStorage;
+import ru.mirea.kovalikaa.lesson9.domain.models.Movie;
+import ru.mirea.kovalikaa.lesson9.domain.repository.MovieRepository;
+import ru.mirea.kovalikaa.lesson9.domain.usercases.GetFavoriteFilmUseCase;
+import ru.mirea.kovalikaa.lesson9.domain.usercases.SaveFilmToFavoriteUseCase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +26,10 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textViewMovie);
         editText = findViewById(R.id.editTextMovie);
 
-        MovieRepository movieRepository = new MovieRepositoryImpl(this);
+//        MovieRepository movieRepository = new MovieRepositoryImpl(this);
+
+        MovieStorage storage = new SharedPrefMovieStorage(this);
+        MovieRepository movieRepository = new MovieRepositoryImpl(storage);
         GetFavoriteFilmUseCase getFavoriteFilmUseCase = new GetFavoriteFilmUseCase(movieRepository);
         SaveFilmToFavoriteUseCase saveFilmToFavoriteUseCase = new SaveFilmToFavoriteUseCase(movieRepository);
         findViewById(R.id.buttonSaveMovie).setOnClickListener(view -> {
