@@ -2,6 +2,10 @@ package ru.mirea.kovalikaa.pocketdictionary.data.repository;
 
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import model.WordDefinition;
 import repository.WordRepository;
 import ru.mirea.kovalikaa.pocketdictionary.data.network.NetworkApi;
@@ -13,43 +17,73 @@ import ru.mirea.kovalikaa.pocketdictionary.data.storage.room.WordEntity;
 
 public class WordRepositoryImpl implements WordRepository {
 
-    private final WordStorage sharedPrefStorage;
-    private final WordDao wordDao;
-    private final NetworkApi networkApi;
+//    private final WordStorage sharedPrefStorage;
+//    private final WordDao wordDao;
+//    private final NetworkApi networkApi;
+    private static final ArrayList<WordDefinition> STUB_DATA = new ArrayList<>();
+//    public WordRepositoryImpl(WordStorage sharedPrefStorage, WordDao wordDao, NetworkApi networkApi) {
+//        this.sharedPrefStorage = sharedPrefStorage;
+//        this.wordDao = wordDao;
+//        this.networkApi = networkApi;
+//    }
 
-    public WordRepositoryImpl(WordStorage sharedPrefStorage, WordDao wordDao, NetworkApi networkApi) {
-        this.sharedPrefStorage = sharedPrefStorage;
-        this.wordDao = wordDao;
-        this.networkApi = networkApi;
+    static {
+        STUB_DATA.add(new WordDefinition("Android", "An open-source operating system used for smartphones and tablet computers."));
+        STUB_DATA.add(new WordDefinition("Java", "A high-level, class-based, object-oriented programming language."));
+        STUB_DATA.add(new WordDefinition("Kotlin", "A cross-platform, statically typed, general-purpose programming language with type inference."));
     }
+
+//    @Override
+//    public WordDefinition getDefinition(String word) {
+//        WordEntity roomEntity = wordDao.getDefinitionByWord(word);
+//        if (roomEntity != null) {
+//            System.out.println("Got '" + word + "' from ROOM cache.");
+//            WordDataModel dataModel = mapFromRoomEntity(roomEntity);
+//            return mapToDomainModel(dataModel);
+//        }
+//
+//        System.out.println("'" + word + "' not in cache. Fetching from NETWORK.");
+//        WordDataModel dataFromNetwork = networkApi.getDefinitionFromNetwork(word);
+//
+//        sharedPrefStorage.save(dataFromNetwork);
+//        wordDao.saveDefinition(mapToRoomEntity(dataFromNetwork));
+//        System.out.println("Saved '" + word + "' to Room and SharedPreferences.");
+//
+//        return mapToDomainModel(dataFromNetwork);
+//    }
+
 
     @Override
     public WordDefinition getDefinition(String word) {
-        WordEntity roomEntity = wordDao.getDefinitionByWord(word);
-        if (roomEntity != null) {
-            System.out.println("Got '" + word + "' from ROOM cache.");
-            WordDataModel dataModel = mapFromRoomEntity(roomEntity);
-            return mapToDomainModel(dataModel);
-        }
-
-        System.out.println("'" + word + "' not in cache. Fetching from NETWORK.");
-        WordDataModel dataFromNetwork = networkApi.getDefinitionFromNetwork(word);
-
-        sharedPrefStorage.save(dataFromNetwork);
-        wordDao.saveDefinition(mapToRoomEntity(dataFromNetwork));
-        System.out.println("Saved '" + word + "' to Room and SharedPreferences.");
-
-        return mapToDomainModel(dataFromNetwork);
+        return new WordDefinition(word, "This is a STUB definition.");
     }
+
+//    @Override
+//    public boolean saveWordToFavorites(WordDefinition word) {
+//        WordDataModel dataModel = mapToDataModel(word);
+//        sharedPrefStorage.save(dataModel);
+//        wordDao.saveDefinition(mapToRoomEntity(dataModel));
+//        return true;
+//    }
+
 
     @Override
     public boolean saveWordToFavorites(WordDefinition word) {
-        WordDataModel dataModel = mapToDataModel(word);
-        sharedPrefStorage.save(dataModel);
-        wordDao.saveDefinition(mapToRoomEntity(dataModel));
+        if (word != null && !STUB_DATA.contains(word)) {
+            STUB_DATA.add(word);
+        }
         return true;
     }
+    @Override
+    public List<WordDefinition> getFavorites() {
+        System.out.println("Returning STUB data for RecyclerView");
+        return STUB_DATA;
+    }
 
+    @Override
+    public void removeFavorite(WordDefinition word) {
+        STUB_DATA.remove(word);
+    }
 
 
     private WordDataModel mapToDataModel(WordDefinition domainModel) {

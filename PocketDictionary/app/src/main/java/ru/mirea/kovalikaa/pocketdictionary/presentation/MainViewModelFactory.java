@@ -18,22 +18,26 @@ import usecases.SaveFavoriteWordUseCase;
 
 public class MainViewModelFactory implements ViewModelProvider.Factory {
 
-    private final Context context;
+//    private final Context context;
 
-    public MainViewModelFactory(Context context) {
-        this.context = context.getApplicationContext();
-    }
+//    public MainViewModelFactory(Context context) {
+//        this.context = context.getApplicationContext();
+//    }
+
+    public MainViewModelFactory() {}
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
 
-        NetworkApi networkApi = new NetworkApi();
-        AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "dictionary-db")
-                .allowMainThreadQueries().build();
-        WordDao wordDao = database.wordDao();
-        WordStorage sharedPrefStorage = new SharedPrefWordStorage(context);
-        WordRepository wordRepository = new WordRepositoryImpl(sharedPrefStorage, wordDao, networkApi);
+//        NetworkApi networkApi = new NetworkApi();
+        WordRepository wordRepository = new WordRepositoryImpl();
+//        AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "dictionary-db")
+//                .allowMainThreadQueries().build();
+//        WordDao wordDao = database.wordDao();
+//        WordStorage sharedPrefStorage = new SharedPrefWordStorage(context);
+//        WordRepository wordRepository = new WordRepositoryImpl(sharedPrefStorage, wordDao, networkApi);
+//        GetWordDefinitionUseCase getWordDefinitionUseCase = new GetWordDefinitionUseCase(wordRepository);
         GetWordDefinitionUseCase getWordDefinitionUseCase = new GetWordDefinitionUseCase(wordRepository);
         SaveFavoriteWordUseCase saveFavoriteWordUseCase = new SaveFavoriteWordUseCase(wordRepository);
 

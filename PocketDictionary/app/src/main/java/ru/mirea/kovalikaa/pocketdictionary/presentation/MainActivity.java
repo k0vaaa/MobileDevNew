@@ -1,5 +1,6 @@
 package ru.mirea.kovalikaa.pocketdictionary.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewModel = new ViewModelProvider(this, new MainViewModelFactory(this))
+        viewModel = new ViewModelProvider(this, new MainViewModelFactory())
                 .get(MainViewModel.class);
 
         editTextWord = findViewById(R.id.editTextWord);
@@ -50,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
             if (message != null && !message.isEmpty()) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             }
+        });
+        Button buttonGoToFavorites = findViewById(R.id.buttonGoToFavorites);
+        buttonGoToFavorites.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, FavoritesActivity.class));
         });
     }
 }
