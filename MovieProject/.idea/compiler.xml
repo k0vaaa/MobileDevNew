@@ -4,6 +4,9 @@
     <bytecodeTargetLevel target="11">
       <module name="MovieProject.app" target="21" />
       <module name="MovieProject.data" target="21" />
+      <module name="MovieProject.listviewapp" target="21" />
+      <module name="MovieProject.recyclerviewapp" target="21" />
+      <module name="MovieProject.scrollviewapp" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

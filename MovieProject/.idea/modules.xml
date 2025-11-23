@@ -14,6 +14,18 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.main.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.test.iml" filepath="$PROJECT_DIR$/.idea/modules/domain/MovieProject.domain.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.iml" filepath="$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/listviewapp/MovieProject.listviewapp.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.unitTest.iml" />
     </modules>
   </component>
 </project>
