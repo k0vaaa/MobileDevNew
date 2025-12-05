@@ -22,6 +22,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/recyclerviewapp/MovieProject.recyclerviewapp.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.iml" filepath="$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/retrofitapp/MovieProject.retrofitapp.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/scrollviewapp/MovieProject.scrollviewapp.main.iml" />
