@@ -11,6 +11,12 @@
 
     tools:context=".presentation.MainActivity">
 
+    <ImageView
+        android:id="@+id/headerImageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="24dp" />
+
     <EditText
         android:id="@+id/editTextWord"
         android:layout_width="match_parent"

@@ -16,22 +16,20 @@ import usecases.RemoveFavoriteUseCase;
 
 public class FavoritesViewModelFactory implements ViewModelProvider.Factory {
 
-//    private final Context context;
+    private final Context context;
 
-//    public FavoritesViewModelFactory(Context context) {
-//        this.context = context.getApplicationContext();
-//    }
-    public FavoritesViewModelFactory() {}
+    public FavoritesViewModelFactory(Context context) {
+        this.context = context.getApplicationContext();
+    }
+
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        WordRepository wordRepository = new WordRepositoryImpl();
-//        AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "dictionary-db")
-//                .allowMainThreadQueries().build();
-//        WordDao wordDao = database.wordDao();
-//
-//        WordRepository wordRepository = new WordRepositoryImpl(null, wordDao, null);
+        AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "dictionary-db")
+                .allowMainThreadQueries().build();
+        WordDao wordDao = database.wordDao();
+        WordRepository wordRepository = new WordRepositoryImpl(null, wordDao, null);
 
         GetFavoritesUseCase getFavoritesUseCase = new GetFavoritesUseCase(wordRepository);
         RemoveFavoriteUseCase removeFavoriteUseCase = new RemoveFavoriteUseCase(wordRepository);

@@ -17,74 +17,60 @@ import ru.mirea.kovalikaa.pocketdictionary.data.storage.room.WordEntity;
 
 public class WordRepositoryImpl implements WordRepository {
 
-//    private final WordStorage sharedPrefStorage;
-//    private final WordDao wordDao;
-//    private final NetworkApi networkApi;
-    private static final ArrayList<WordDefinition> STUB_DATA = new ArrayList<>();
-//    public WordRepositoryImpl(WordStorage sharedPrefStorage, WordDao wordDao, NetworkApi networkApi) {
-//        this.sharedPrefStorage = sharedPrefStorage;
-//        this.wordDao = wordDao;
-//        this.networkApi = networkApi;
-//    }
+    private final WordStorage sharedPrefStorage;
+    private final WordDao wordDao;
+    private final NetworkApi networkApi;
 
-    static {
-        STUB_DATA.add(new WordDefinition("Android", "An open-source operating system used for smartphones and tablet computers."));
-        STUB_DATA.add(new WordDefinition("Java", "A high-level, class-based, object-oriented programming language."));
-        STUB_DATA.add(new WordDefinition("Kotlin", "A cross-platform, statically typed, general-purpose programming language with type inference."));
+    public WordRepositoryImpl(WordStorage sharedPrefStorage, WordDao wordDao, NetworkApi networkApi) {
+        this.sharedPrefStorage = sharedPrefStorage;
+        this.wordDao = wordDao;
+        this.networkApi = networkApi;
     }
-
-//    @Override
-//    public WordDefinition getDefinition(String word) {
-//        WordEntity roomEntity = wordDao.getDefinitionByWord(word);
-//        if (roomEntity != null) {
-//            System.out.println("Got '" + word + "' from ROOM cache.");
-//            WordDataModel dataModel = mapFromRoomEntity(roomEntity);
-//            return mapToDomainModel(dataModel);
-//        }
-//
-//        System.out.println("'" + word + "' not in cache. Fetching from NETWORK.");
-//        WordDataModel dataFromNetwork = networkApi.getDefinitionFromNetwork(word);
-//
-//        sharedPrefStorage.save(dataFromNetwork);
-//        wordDao.saveDefinition(mapToRoomEntity(dataFromNetwork));
-//        System.out.println("Saved '" + word + "' to Room and SharedPreferences.");
-//
-//        return mapToDomainModel(dataFromNetwork);
-//    }
 
 
     @Override
     public WordDefinition getDefinition(String word) {
-        return new WordDefinition(word, "This is a STUB definition.");
+        WordEntity roomEntity = wordDao.getDefinitionByWord(word);
+        if (roomEntity != null) {
+            System.out.println("Got '" + word + "' from ROOM cache.");
+            WordDataModel dataModel = mapFromRoomEntity(roomEntity);
+            return mapToDomainModel(dataModel);
+        }
+
+        System.out.println("'" + word + "' not in cache. Fetching from NETWORK.");
+        WordDataModel dataFromNetwork = networkApi.getDefinitionFromNetwork(word);
+
+        if (dataFromNetwork != null && !"Definition not found for this word.".equals(dataFromNetwork.getDefinition())) {
+            sharedPrefStorage.save(dataFromNetwork);
+            wordDao.saveDefinition(mapToRoomEntity(dataFromNetwork));
+            System.out.println("Saved '" + word + "' to Room and SharedPreferences.");
+        }
+
+        return mapToDomainModel(dataFromNetwork);
     }
-
-//    @Override
-//    public boolean saveWordToFavorites(WordDefinition word) {
-//        WordDataModel dataModel = mapToDataModel(word);
-//        sharedPrefStorage.save(dataModel);
-//        wordDao.saveDefinition(mapToRoomEntity(dataModel));
-//        return true;
-//    }
-
 
     @Override
     public boolean saveWordToFavorites(WordDefinition word) {
-        if (word != null && !STUB_DATA.contains(word)) {
-            STUB_DATA.add(word);
-        }
+        WordDataModel dataModel = mapToDataModel(word);
+        sharedPrefStorage.save(dataModel);
+        wordDao.saveDefinition(mapToRoomEntity(dataModel));
         return true;
     }
+
     @Override
     public List<WordDefinition> getFavorites() {
-        System.out.println("Returning STUB data for RecyclerView");
-        return STUB_DATA;
+        List<WordEntity> entities = wordDao.getAllFavorites();
+        List<WordDefinition> domainModels = new ArrayList<>();
+        for (WordEntity entity : entities) {
+            domainModels.add(mapToDomainModel(mapFromRoomEntity(entity)));
+        }
+        return domainModels;
     }
 
     @Override
     public void removeFavorite(WordDefinition word) {
-        STUB_DATA.remove(word);
+        wordDao.deleteFavorite(mapToRoomEntity(mapToDataModel(word)));
     }
-
 
     private WordDataModel mapToDataModel(WordDefinition domainModel) {
         return new WordDataModel(domainModel.getWord(), domainModel.getDefinition(), System.currentTimeMillis());

@@ -24,7 +24,7 @@ public class FavoritesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
 
-        viewModel = new ViewModelProvider(this, new FavoritesViewModelFactory())
+        viewModel = new ViewModelProvider(this, new FavoritesViewModelFactory(this))
                 .get(FavoritesViewModel.class);
 
         RecyclerView recyclerView = findViewById(R.id.favoritesRecyclerView);
