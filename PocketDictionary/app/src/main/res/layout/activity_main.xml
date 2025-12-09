@@ -1,53 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-
-
-    android:gravity="center"
-
     tools:context=".presentation.MainActivity">
 
-    <ImageView
-        android:id="@+id/headerImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/editTextWord"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter a word to define" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarMain"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:titleTextColor="@android:color/white"/>
 
-    <TextView
-        android:id="@+id/textViewResult"
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Definition will be shown here."
-        android:textSize="18sp" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Save to Favorites" />
-
-    <Button
-        android:id="@+id/buttonGoToFavorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="View Favorites" />
+        <ImageView
+            android:id="@+id/headerImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="24dp" />
+        <EditText
+            android:id="@+id/editTextWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter a word to define" />
+        <Button
+            android:id="@+id/buttonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search" />
+        <TextView
+            android:id="@+id/textViewResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Definition will be shown here."
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Save to Favorites" />
+        <Button
+            android:id="@+id/buttonGoToFavorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="View Favorites" />
+    </LinearLayout>
 </LinearLayout>

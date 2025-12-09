@@ -10,5 +10,7 @@ public class WordEntity {
     @NonNull
     public String word;
     public String definition;
+    public String imageUrl;
     public long timestamp;
+    public boolean isFavorite;
 }

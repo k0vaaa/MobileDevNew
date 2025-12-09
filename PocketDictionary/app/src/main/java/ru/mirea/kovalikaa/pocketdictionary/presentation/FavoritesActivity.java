@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
+
 import ru.mirea.kovalikaa.pocketdictionary.R;
 import ru.mirea.kovalikaa.pocketdictionary.presentation.adapter.FavoritesAdapter;
 
@@ -23,6 +25,11 @@ public class FavoritesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorites);
+        MaterialToolbar toolbar = findViewById(R.id.toolbarFavorites);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         viewModel = new ViewModelProvider(this, new FavoritesViewModelFactory(this))
                 .get(FavoritesViewModel.class);
@@ -39,13 +46,20 @@ public class FavoritesActivity extends AppCompatActivity {
         viewModel.favoritesList.observe(this, favorites -> {
             adapter.setFavorites(favorites);
         });
-
-        viewModel.loadFavorites();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         viewModel.loadFavorites();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

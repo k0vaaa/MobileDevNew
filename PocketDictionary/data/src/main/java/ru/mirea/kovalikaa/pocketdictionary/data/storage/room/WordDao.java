@@ -14,9 +14,14 @@ public interface WordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveDefinition(WordEntity entity);
 
-    @Query("SELECT * FROM definitions ORDER BY word ASC")
+    @Query("SELECT * FROM definitions WHERE isFavorite = 1 ORDER BY word ASC")
     List<WordEntity> getAllFavorites();
 
     @Delete
     void deleteFavorite(WordEntity word);
+
+    @Query("UPDATE definitions SET isFavorite = 1 WHERE word = :word")
+    void setFavorite(String word);
+
+
 }

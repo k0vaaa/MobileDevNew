@@ -22,11 +22,11 @@ public class FavoritesViewModelFactory implements ViewModelProvider.Factory {
         this.context = context.getApplicationContext();
     }
 
-
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         AppDatabase database = Room.databaseBuilder(context, AppDatabase.class, "dictionary-db")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries().build();
         WordDao wordDao = database.wordDao();
         WordRepository wordRepository = new WordRepositoryImpl(null, wordDao, null);

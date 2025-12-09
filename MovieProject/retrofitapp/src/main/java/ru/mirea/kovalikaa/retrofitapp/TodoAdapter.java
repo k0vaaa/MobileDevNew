@@ -56,6 +56,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         Todo todo = todos.get(position);
         holder.textViewTitle.setText(todo.getTitle());
         holder.checkBoxCompleted.setChecked(todo.getCompleted());
+
         String imageUrl = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png";
         Picasso.get()
                 .load(imageUrl)

@@ -18,14 +18,11 @@ public class AuthRepositoryImpl implements AuthRepository {
     @Override
     public void login(String email, String password, AuthCallback callback) {
         mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            callback.onSuccess();
-                        } else {
-                            callback.onFailure(task.getException().getMessage());
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        callback.onSuccess();
+                    } else {
+                        callback.onFailure(task.getException().getMessage());
                     }
                 });
     }
@@ -33,15 +30,17 @@ public class AuthRepositoryImpl implements AuthRepository {
     @Override
     public void register(String email, String password, AuthCallback callback) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            callback.onSuccess();
-                        } else {
-                            callback.onFailure(task.getException().getMessage());
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        callback.onSuccess();
+                    } else {
+                        callback.onFailure(task.getException().getMessage());
                     }
                 });
+    }
+
+    @Override
+    public void logout() {
+        mAuth.signOut();
     }
 }

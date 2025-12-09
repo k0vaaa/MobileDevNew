@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/favoritesRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
-    android:clipToPadding="false"
-    tools:context=".presentation.FavoritesActivity"
-    tools:listitem="@layout/item_favorite" />
+    android:orientation="vertical"
+    tools:context=".presentation.FavoritesActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarFavorites"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Favorites"
+            app:titleTextColor="@android:color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoritesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_favorite" />
+</LinearLayout>

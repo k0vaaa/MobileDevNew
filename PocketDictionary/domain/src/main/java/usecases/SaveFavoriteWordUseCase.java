@@ -11,10 +11,9 @@ public class SaveFavoriteWordUseCase {
         this.wordRepository = wordRepository;
     }
 
-    public boolean execute(WordDefinition word) {
-        if (word.getWord() == null || word.getWord().isEmpty()) {
-            return false;
+    public void execute(String word) {
+        if (word != null && !word.isEmpty()) {
+            wordRepository.saveWordToFavorites(word);
         }
-        return wordRepository.saveWordToFavorites(word);
     }
 }

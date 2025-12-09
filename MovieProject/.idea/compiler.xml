@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="11">
-      <module name="MovieProject.app" target="21" />
-      <module name="MovieProject.data" target="21" />
-      <module name="MovieProject.listviewapp" target="21" />
-      <module name="MovieProject.recyclerviewapp" target="21" />
-      <module name="MovieProject.retrofitapp" target="21" />
-      <module name="MovieProject.scrollviewapp" target="21" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
