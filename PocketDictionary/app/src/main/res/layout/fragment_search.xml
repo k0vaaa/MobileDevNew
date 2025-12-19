@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".presentation.SearchFragment">
+
+    <ImageView
+        android:id="@+id/headerImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="24dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <EditText
+        android:id="@+id/editTextWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter a word to define"
+        android:textAlignment="center"
+        android:autofillHints="name"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Search" />
+
+    <TextView
+        android:id="@+id/textViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Definition will be shown here."
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Save to Favorites" />
+
+</LinearLayout>
