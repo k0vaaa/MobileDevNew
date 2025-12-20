@@ -30,3 +30,6 @@ include(":retrofitapp")
 include(":fragmentapp")
 include(":fragmentmanagerapp")
 include(":resultapifragmentapp")
+include(":bottomnavigationapp")
+
+include(":navigationdrawerapp")
