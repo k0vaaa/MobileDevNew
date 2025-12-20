@@ -32,9 +32,9 @@ public class DataFragment extends Fragment {
         textViewResult = view.findViewById(R.id.textViewResult);
         Button openButton = view.findViewById(R.id.buttonOpenBottomSheet);
 
-        openButton.setOnClickListener(v -> {
-            new BottomSheetFragment().show(getParentFragmentManager(), "BottomSheetFragment");
-        });
+            openButton.setOnClickListener(v -> {
+                new BottomSheetFragment().show(getParentFragmentManager(), "BottomSheetFragment");
+            });
 
         return view;
     }
