@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="ru.mirea.kovalikaa.navigationdrawerapp.ui.home.HomeFragment"
-        android:label="Profile"
+        android:label="Профиль"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="ru.mirea.kovalikaa.navigationdrawerapp.ui.gallery.GalleryFragment"
-        android:label="Search"
+        android:label="Поиск"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="ru.mirea.kovalikaa.navigationdrawerapp.ui.slideshow.SlideshowFragment"
-        android:label="Favorites"
+        android:label="Избранное"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
