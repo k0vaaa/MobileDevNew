@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import ru.mirea.kovalikaa.pocketdictionary.R;
 
 public class ProfileFragment extends Fragment {
 
+    private MainViewModel viewModel;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,20 +34,34 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        viewModel = new ViewModelProvider(requireActivity(), new MainViewModelFactory(requireContext()))
+                .get(MainViewModel.class);
+
         TextView textViewEmail = view.findViewById(R.id.textViewUserEmail);
-        Button buttonLogout = view.findViewById(R.id.buttonLogout);
+        Button buttonAction = view.findViewById(R.id.buttonLogout);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            textViewEmail.setText(user.getEmail());
+        String email = viewModel.getCurrentUserEmail();
+
+        if (email != null) {
+            textViewEmail.setText(email);
+            buttonAction.setText("Выйти из аккаунта");
+            buttonAction.setOnClickListener(v -> {
+                viewModel.logout();
+                goToAuth();
+            });
+        } else {
+            textViewEmail.setText("Guest Mode");
+            buttonAction.setText("Войти / Регистрация");
+            buttonAction.setOnClickListener(v -> {
+                goToAuth();
+            });
         }
+    }
 
-        buttonLogout.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(getActivity(), AuthActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            getActivity().finish();
-        });
+    private void goToAuth() {
+        Intent intent = new Intent(getActivity(), AuthActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        if (getActivity() != null) getActivity().finish();
     }
 }

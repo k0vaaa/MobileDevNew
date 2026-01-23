@@ -34,4 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Register" />
+
+    <Button
+        android:id="@+id/buttonGuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:text="Continue as Guest" />
 </LinearLayout>

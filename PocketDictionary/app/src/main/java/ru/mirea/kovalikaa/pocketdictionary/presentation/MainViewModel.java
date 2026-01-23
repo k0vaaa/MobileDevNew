@@ -11,24 +11,25 @@ import model.WordDefinition;
 import usecases.GetWordDefinitionUseCase;
 import usecases.LogoutUseCase;
 import usecases.SaveFavoriteWordUseCase;
-
+import usecases.GetUserEmailUseCase;
 public class MainViewModel extends ViewModel {
 
     private final GetWordDefinitionUseCase getWordDefinitionUseCase;
     private final LogoutUseCase logoutUseCase;
     private final SaveFavoriteWordUseCase saveFavoriteWordUseCase;
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-
+    private final GetUserEmailUseCase getUserEmailUseCase;
     private final MutableLiveData<String> searchTrigger = new MutableLiveData<>();
     private final MediatorLiveData<WordDefinition> _wordDefinition = new MediatorLiveData<>();
     public final LiveData<WordDefinition> wordDefinition = _wordDefinition;
     private final MutableLiveData<String> _toastMessage = new MutableLiveData<>();
     public final LiveData<String> toastMessage = _toastMessage;
 
-    public MainViewModel(GetWordDefinitionUseCase getWordDefinitionUseCase, SaveFavoriteWordUseCase saveFavoriteWordUseCase, LogoutUseCase logoutUseCase) {
+    public MainViewModel(GetWordDefinitionUseCase getWordDefinitionUseCase, SaveFavoriteWordUseCase saveFavoriteWordUseCase, LogoutUseCase logoutUseCase, GetUserEmailUseCase getUserEmailUseCase) {
         this.getWordDefinitionUseCase = getWordDefinitionUseCase;
         this.saveFavoriteWordUseCase = saveFavoriteWordUseCase;
         this.logoutUseCase = logoutUseCase;
+        this.getUserEmailUseCase = getUserEmailUseCase;
         _wordDefinition.addSource(searchTrigger, word -> {
             if (word != null && !word.isEmpty()) {
                 executorService.execute(() -> {
@@ -48,6 +49,10 @@ public class MainViewModel extends ViewModel {
     }
 
     public void saveCurrentWord() {
+        if (getUserEmailUseCase.execute() == null) {
+            _toastMessage.postValue("Registration required to save favorites!");
+            return;
+        }
         executorService.execute(() -> {
             WordDefinition wordToSave = _wordDefinition.getValue();
             if (wordToSave != null) {
@@ -64,8 +69,11 @@ public class MainViewModel extends ViewModel {
         super.onCleared();
         executorService.shutdown();
     }
-
+    public String getCurrentUserEmail() {
+        return getUserEmailUseCase.execute();
+    }
     public void logout() {
         logoutUseCase.execute();
     }
+
 }

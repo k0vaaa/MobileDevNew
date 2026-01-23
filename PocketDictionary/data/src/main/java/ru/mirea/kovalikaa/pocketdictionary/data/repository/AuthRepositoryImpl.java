@@ -43,4 +43,12 @@ public class AuthRepositoryImpl implements AuthRepository {
     public void logout() {
         mAuth.signOut();
     }
+    @Override
+
+    public String getCurrentUserEmail() {
+        if (mAuth.getCurrentUser() != null) {
+            return mAuth.getCurrentUser().getEmail();
+        }
+        return null;
+    }
 }

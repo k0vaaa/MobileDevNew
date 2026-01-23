@@ -48,6 +48,10 @@ public class AuthActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         Button buttonLogin = findViewById(R.id.buttonLogin);
         Button buttonRegister = findViewById(R.id.buttonRegister);
+        Button buttonGuest = findViewById(R.id.buttonGuest);
+        buttonGuest.setOnClickListener(v -> {
+            goToMainActivity();
+        });
 
         buttonLogin.setOnClickListener(v -> {
             String email = editTextEmail.getText().toString();

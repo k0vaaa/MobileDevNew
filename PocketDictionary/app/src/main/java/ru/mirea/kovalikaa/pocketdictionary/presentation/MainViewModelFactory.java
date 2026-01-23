@@ -20,7 +20,7 @@ import ru.mirea.kovalikaa.pocketdictionary.data.storage.room.WordDao;
 import usecases.GetWordDefinitionUseCase;
 import usecases.LogoutUseCase;
 import usecases.SaveFavoriteWordUseCase;
-
+import usecases.GetUserEmailUseCase;
 public class MainViewModelFactory implements ViewModelProvider.Factory {
 
     private final Context context;
@@ -46,6 +46,7 @@ public class MainViewModelFactory implements ViewModelProvider.Factory {
         AuthRepository authRepository = new AuthRepositoryImpl(FirebaseAuth.getInstance());
         LogoutUseCase logoutUseCase = new LogoutUseCase(authRepository);
 
-        return (T) new MainViewModel(getWordDefinitionUseCase, saveFavoriteWordUseCase, logoutUseCase);
+        GetUserEmailUseCase getUserEmailUseCase = new GetUserEmailUseCase(authRepository);
+        return (T) new MainViewModel(getWordDefinitionUseCase, saveFavoriteWordUseCase, logoutUseCase, getUserEmailUseCase);
     }
 }

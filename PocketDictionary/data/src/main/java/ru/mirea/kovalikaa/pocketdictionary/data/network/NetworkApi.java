@@ -39,10 +39,8 @@ public class NetworkApi {
 
                     String definitionText = firstResult.meanings.get(0).definitions.get(0).definition;
                     Log.i(TAG, "Definition found: " + definitionText);
-//                    int imageId = Math.abs(word.hashCode() % 1000);
-//                    String imageUrl = "https://picsum.photos/400/200.jpg?random=" + imageId;
-                    int size = 400 + (Math.abs(word.hashCode()) % 10);
-                    String imageUrl = "https://place.dog/" + size + "/" + size;
+                    String query = word.trim().replace(" ", ",");
+                    String imageUrl = "https://loremflickr.com/500/500/" + query + "?lock=" + System.currentTimeMillis();
 
                     return new WordDataModel(word, definitionText, imageUrl, System.currentTimeMillis());
                 } else {
