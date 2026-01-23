@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp"
     tools:context=".presentation.FavoritesFragment">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:text="Favorites"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"/>
+        android:layout_height="wrap_content"
+        android:text="Избранные\nслова"
+        android:textSize="28sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"

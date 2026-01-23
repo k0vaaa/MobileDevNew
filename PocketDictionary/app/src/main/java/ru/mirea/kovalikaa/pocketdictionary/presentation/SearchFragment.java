@@ -110,6 +110,12 @@ public class SearchFragment extends Fragment {
         Button buttonSave = view.findViewById(R.id.buttonSave);
         Button buttonCamera = view.findViewById(R.id.buttonCamera);
 
+        if (viewModel.getCurrentUserEmail() == null) {
+            buttonSave.setVisibility(View.GONE);
+        } else {
+            buttonSave.setVisibility(View.VISIBLE);
+        }
+
         buttonSearch.setOnClickListener(v -> {
             String word = editTextWord.getText().toString();
             isUserImage = false;
@@ -130,7 +136,7 @@ public class SearchFragment extends Fragment {
 
         viewModel.wordDefinition.observe(getViewLifecycleOwner(), definition -> {
             if (definition != null) {
-                String resultText = "Word: " + definition.getWord() + "\n\nDefinition: " + definition.getDefinition();
+                String resultText = definition.getDefinition();
                 textViewResult.setText(resultText);
 
                 String imageUrl = definition.getImageUrl();

@@ -18,7 +18,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -28,13 +27,24 @@ import ru.mirea.kovalikaa.pocketdictionary.R;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNav;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        viewModel = new ViewModelProvider(this, new MainViewModelFactory(this))
+                .get(MainViewModel.class);
+
         bottomNav = findViewById(R.id.bottom_navigation_view);
+
+        String userEmail = viewModel.getCurrentUserEmail();
+        boolean isGuest = (userEmail == null);
+
+        if (isGuest) {
+            bottomNav.getMenu().findItem(R.id.navigation_favorites).setVisible(false);
+        }
 
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
@@ -45,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new SearchFragment();
                 tag = "SEARCH_FRAGMENT";
             } else if (itemId == R.id.navigation_favorites) {
+                if (isGuest) return false;
+
                 selectedFragment = new FavoritesFragment();
                 tag = "FAVORITES_FRAGMENT";
             } else if (itemId == R.id.navigation_profile) {

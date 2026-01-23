@@ -50,7 +50,7 @@ public class ProfileFragment extends Fragment {
                 goToAuth();
             });
         } else {
-            textViewEmail.setText("Guest Mode");
+            textViewEmail.setText("Гостевой режим");
             buttonAction.setText("Войти / Регистрация");
             buttonAction.setOnClickListener(v -> {
                 goToAuth();
